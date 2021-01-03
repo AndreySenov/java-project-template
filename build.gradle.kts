@@ -18,6 +18,10 @@ subprojects {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    java {
+        modularity.inferModulePath.set(true)
+    }
+
     tasks {
         test {
             useJUnitPlatform()
