@@ -2,5 +2,6 @@
 .idea
 build
 
+.DS_Store
 hs_err_pid*
 *.log
