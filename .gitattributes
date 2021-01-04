@@ -1,13 +1,23 @@
+[attr]binary-lfs filter=lfs diff=lfs merge=lfs -text
+
 * text=auto
 
-*.bat   text eol=crlf
-*.css   text
-*.java  text
-*.json  text
-*.md    text
-*.sh    text
-*.txt   text
-*.xml   text
-*.yml   text
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+*.css           text
+*.java          text
+*.json          text
+*.md            text
+*.sh            text eol=lf
+*.txt           text
+*.xml           text
+*.{yaml,yml}    text
 
-*.jar binary
+*.7z            binary-lfs
+*.gz            binary-lfs
+*.jar           binary-lfs
+*.{jpeg,jpg}    binary-lfs
+*.png           binary-lfs
+*.tar           binary-lfs
+*.woff2         binary-lfs
+*.zip           binary-lfs
