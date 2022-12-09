@@ -3,28 +3,46 @@ plugins {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
+    testCompileOnly {
+        extendsFrom(configurations.testAnnotationProcessor.get())
+    }
+}
+
+val lombok = "1.18.24"
+
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    annotationProcessor("org.projectlombok:lombok:$lombok")
+    testAnnotationProcessor("org.projectlombok:lombok:$lombok")
+
+    compileOnly("org.projectlombok:lombok:$lombok")
+    testCompileOnly("org.projectlombok:lombok:$lombok")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
-subprojects {
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
-    configure<JavaPluginConvention> {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    java {
-        modularity.inferModulePath.set(true)
-    }
-
+allprojects {
     tasks {
         test {
             useJUnitPlatform()
         }
+    }
+}
+
+subprojects {
+    java {
+        modularity.inferModulePath.set(true)
     }
 }
